@@ -2,12 +2,12 @@
     <div class="flex justify-between">
         <!-- Total Order Count -->
         <p class="text-base font-semibold leading-none text-gray-800 dark:text-white">
-            @lang('admin::app.customers.customers.view.orders.count', ['count' => count($customer->orders)])
+            @lang('admin::app.customers.customers.view.orders.count', ['count' => $customer->orders()->count()])
         </p>
 
         <!-- Total Order Revenue -->
         <p class="text-base font-semibold leading-none text-gray-800 dark:text-white">
-            @lang('admin::app.customers.customers.view.orders.total-revenue', ['revenue' => core()->formatPrice($customer->orders->whereNotIn('status', ['canceled', 'closed'])->sum('base_grand_total_invoiced'))])
+            @lang('admin::app.customers.customers.view.orders.total-revenue', ['revenue' => core()->formatPrice($customer->orders()->whereNotIn('status', ['canceled', 'closed'])->sum('base_grand_total_invoiced'))])
         </p>
     </div>
 
